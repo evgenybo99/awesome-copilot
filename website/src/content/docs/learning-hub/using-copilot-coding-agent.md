@@ -3,7 +3,7 @@ title: 'Using the Copilot Coding Agent'
 description: 'Learn how to use GitHub Copilot coding agent to autonomously work on issues, generate pull requests, and automate development tasks.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-05-13
+lastUpdated: 2026-07-03
 estimatedReadingTime: '12 minutes'
 tags:
   - coding-agent
@@ -376,6 +376,40 @@ Since v1.0.47, `--resume` also surfaces **cloud agent sessions that haven't yet 
 | No PR required | You can steer tasks that haven't yet opened a pull request |
 
 > **Note**: Remote control replaces the earlier "steering" feature. If you see references to steering in older documentation, remote control is the updated equivalent.
+
+## Automated PR Workflows
+
+Once the coding agent has opened a pull request, you can use the Copilot CLI to automatically drive it through CI, review, and merge — without manual monitoring.
+
+### /pr auto
+
+`/pr auto` starts a **self-paced loop** that works the PR toward a green state *(v1.0.66+)*:
+
+- Checks the current CI/CD status and review requirements
+- Fixes one blocking issue per iteration (failing tests, lint errors, review feedback)
+- Paces itself around CI to avoid redundant re-runs
+- Stops automatically when the PR is ready to merge
+
+```
+/pr auto       # start the automated fix loop for the current PR
+```
+
+Manage or stop the loop at any time with `/loop` or `/every`.
+
+### /pr automerge
+
+`/pr automerge` — also available as `/pr agentmerge` *(v1.0.68+)* — takes the automation further by continuing through CI, review, and merge queue until the PR is actually merged:
+
+```
+/pr automerge   # drive the PR all the way to merge
+```
+
+| Command | What It Does |
+|---------|-------------|
+| `/pr auto` | Fixes CI issues one at a time in a self-paced loop; stops when PR is green |
+| `/pr automerge` | Fixes issues **and** merges when all conditions are met *(alias: `/pr agentmerge`)* |
+
+> **Tip**: For a GUI-based equivalent, the [GitHub Copilot app's Agent Merge feature](../github-copilot-app/#agent-merge) provides the same PR automation through a visual interface.
 
 ## Hooks and the Coding Agent
 

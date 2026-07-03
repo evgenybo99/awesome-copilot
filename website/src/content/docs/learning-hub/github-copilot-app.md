@@ -3,7 +3,7 @@ title: 'Getting Started with the GitHub Copilot app'
 description: 'Learn about the GitHub Copilot app, a desktop experience built for agent-native development. Understand its key features and who it''s for.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-06-17
+lastUpdated: 2026-07-03
 estimatedReadingTime: '8 minutes'
 tags:
   - copilot-app
@@ -87,6 +87,8 @@ For a hands-on guide to building canvases with `/create-canvas`, see [Working wi
 - Can automatically merge when all conditions are met
 
 You control the automation level—decide whether Agent Merge should just run CI, address feedback, or go all the way to merging. It's a way to let Copilot handle the tedious parts of the review and merge process.
+
+> **CLI equivalent**: From the terminal, `/pr auto` starts a self-paced loop that fixes one CI issue per run, and `/pr automerge` (also available as `/pr agentmerge` since v1.0.68) drives the PR all the way to merge automatically. See [Automated PR Workflows](../using-copilot-coding-agent/#automated-pr-workflows).
 
 ## Who is the Copilot app for?
 
