@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-06-30
+lastUpdated: 2026-07-04
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -603,7 +603,7 @@ The `/context` command shows a visualization of the current conversation's conte
 /context
 ```
 
-The `/usage` command displays session metrics such as the number of tokens consumed, API calls made, and any quota information for the current session. In v1.0.64+, `/usage` also shows per-model token totals when you have used multiple models in a session:
+The `/usage` command displays session metrics such as the number of tokens consumed, API calls made, and any quota information for the current session. In v1.0.64+, `/usage` also shows per-model token totals when you have used multiple models in a session. In v1.0.68+, `/usage` additionally shows **plan budget details** for supported plans — useful for understanding remaining credits and spend limits at a glance:
 
 ```
 /usage
@@ -658,6 +658,23 @@ Use `/autopilot` when you want to flip between supervised and unsupervised opera
 > **Enhanced autopilot (v1.0.64+)**: When autopilot mode is active — including when launched with `--autopilot` at startup or during automatic continuation turns — the agent automatically handles elicitation dialogs, `ask_user` prompts, sampling requests, and permission prompts without surfacing them as interactive dialogs. This means long-running automated sessions can proceed end-to-end without manual confirmation steps.
 
 > **Read-only `gh` CLI commands (v1.0.46+)**: Read-only `gh` commands — such as `gh issue list`, `gh pr view`, `gh run status`, and other commands that don't write to GitHub — are **automatically approved** without a permission prompt. Only commands that write to GitHub (like creating issues, merging PRs) still require explicit approval. This reduces friction during exploratory sessions where you frequently check issue or PR status.
+
+The `/sandbox` command manages the **filesystem access allowlist** for the current CLI session. Copilot CLI runs agents inside a filesystem sandbox that restricts which paths they can read, write, or execute. When an agent tries to access a path outside the approved list, the CLI pauses and asks you to approve or deny access — showing you the resolved symlink targets so you know exactly what is being granted.
+
+```
+/sandbox                 # view and manage approved filesystem paths
+```
+
+From the `/sandbox` view you can:
+
+- See which paths are currently in the allowlist
+- Add new directories to allow agent access
+- Remove paths that are no longer needed
+- Temporarily disable the sandbox for the rest of the session
+
+**Disabling the sandbox mid-session** *(v1.0.66+)*: Once you disable the sandbox, it takes effect immediately — shell and search commands stop re-prompting for each access. Bypassed commands are labelled in the timeline so you can audit what ran without a sandbox check.
+
+> **Security tip**: Keep the sandbox enabled for interactive sessions. Use `/allow-all` to skip tool permission prompts while keeping the filesystem sandbox active, so the agent still cannot access paths outside your approved list.
 
 The `--effort` flag (shorthand for `--reasoning-effort`) controls how much computational reasoning the model applies to a request:
 
