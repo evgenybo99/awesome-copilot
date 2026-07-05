@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-06-30
+lastUpdated: 2026-07-05
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -206,6 +206,8 @@ In addition to repository-level skills, GitHub Copilot CLI supports **personal s
 ```
 
 The `~/.agents/skills/` path aligns with the VS Code GitHub Copilot for Azure extension's default skill discovery path, while `~/.copilot/skills/` matches the Copilot CLI configuration directory. Both are supported for personal skills.
+
+> **Note (v1.0.66+)**: If you launch Copilot CLI with the `COPILOT_HOME` environment variable or the `--config-dir` flag to point to a custom configuration directory, the CLI will **no longer** also load skills from `~/.agents/skills`. It only loads from the custom config directory. If you rely on `~/.agents/skills` for personal skills alongside a custom config directory, copy those skills into your custom config's `skills/` subdirectory.
 
 ### Custom Agents
 
@@ -469,6 +471,8 @@ You can also press **x** on a highlighted session in the session picker (`--resu
 
 In the session picker, press **`s`** to cycle the sort order: relevance, last used, created, or name. The picker also shows the branch name and idle/in-use status for each session.
 
+In v1.0.68+, you can also **browse, resume, and switch between sessions directly from the agents screen** — the same view where you pick or switch agents. This means you can manage your active sessions and choose a different agent in one place, without navigating to a separate session picker.
+
 The `/rewind` command opens a timeline picker that lets you roll back the conversation to any earlier point in history, reverting both the conversation and any file changes made after that point. You can also trigger it by pressing **double-Esc**:
 
 ```
@@ -603,7 +607,7 @@ The `/context` command shows a visualization of the current conversation's conte
 /context
 ```
 
-The `/usage` command displays session metrics such as the number of tokens consumed, API calls made, and any quota information for the current session. In v1.0.64+, `/usage` also shows per-model token totals when you have used multiple models in a session:
+The `/usage` command displays session metrics such as the number of tokens consumed, API calls made, and any quota information for the current session. In v1.0.64+, `/usage` also shows per-model token totals when you have used multiple models in a session. In v1.0.68+, `/usage` displays **plan budget details** for users on plans that include a monthly AI credit budget, so you can see how much of your allocation remains:
 
 ```
 /usage
