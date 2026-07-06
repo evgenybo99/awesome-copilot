@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-06-30
+lastUpdated: 2026-07-06
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -603,7 +603,7 @@ The `/context` command shows a visualization of the current conversation's conte
 /context
 ```
 
-The `/usage` command displays session metrics such as the number of tokens consumed, API calls made, and any quota information for the current session. In v1.0.64+, `/usage` also shows per-model token totals when you have used multiple models in a session:
+The `/usage` command displays session metrics such as the number of tokens consumed, API calls made, and any quota information for the current session. In v1.0.64+, `/usage` also shows per-model token totals when you have used multiple models in a session. In v1.0.68+, `/usage` additionally displays **plan budget details** for supported Copilot plans — showing your remaining AI credit budget directly alongside session metrics, so you can monitor spending without leaving your session:
 
 ```
 /usage
@@ -619,7 +619,7 @@ The `/compact` command summarizes the conversation history to free up context wi
 
 > **ACP sessions (v1.0.39+)**: The `/compact`, `/context`, `/usage`, and `/env` commands are now available in ACP (Agent Coordination Protocol) sessions, allowing remote ACP clients to surface session details and manage context from within their own automated workflows.
 
-The `/statusline` command (with `/footer` as an alias) lets you control which items appear in the terminal status bar. You can show or hide individual indicators like the working directory, current branch, effort level, context window usage, quota, and **active account username** (v1.0.43+). The **changes** toggle shows a running count of added/removed lines for the session — useful when tracking the scope of an ongoing edit. In v1.0.65+, there is also an opt-in **CI check status** indicator that shows the passing/running/failing state of CI checks for the current branch — enable it from the `/statusline` menu:
+The `/statusline` command (with `/footer` as an alias) lets you control which items appear in the terminal status bar. You can show or hide individual indicators like the working directory, current branch, effort level, context window usage, quota, and **active account username** (v1.0.43+). The **changes** toggle shows a running count of added/removed lines for the session — useful when tracking the scope of an ongoing edit. In v1.0.65+, there is also an opt-in **CI check status** indicator that shows the passing/running/failing state of CI checks for the current branch. In v1.0.66+, the status bar shows the **current pull request link** when a PR exists for the active branch. In v1.0.68+, supported plans also show a **plan budget** indicator with your remaining AI credit allowance — enable any of these from the `/statusline` menu:
 
 ```
 /statusline             # show the statusline configuration menu

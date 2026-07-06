@@ -3,7 +3,7 @@ title: 'Building Custom Agents'
 description: 'Learn how to create specialized GitHub Copilot agents with custom personas, tool integrations, and domain expertise.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-07-01
+lastUpdated: 2026-07-06
 estimatedReadingTime: '10 minutes'
 tags:
   - agents
@@ -257,6 +257,7 @@ The agent can then query your database, analyze query plans, and suggest optimiz
 | Most demanding reasoning, security review | Claude Sonnet 5 *(v1.0.67+)* |
 | Complex reasoning, analysis | Claude Sonnet 4 |
 | Code generation, refactoring | GPT-4.1 |
+| Code-specialized tasks | kimi-k2.7-code *(v1.0.68+)* |
 | Quick analysis, simple tasks | Claude Haiku or GPT-4.1-mini |
 | Large codebase understanding | Models with larger context windows |
 
@@ -279,7 +280,7 @@ Keep agents focused—one persona per file. If you find an agent trying to do to
 
 A: In VS Code, open Copilot Chat and use the agent picker dropdown at the top of the chat panel. Your custom agents appear alongside built-in options. You can also `@mention` an agent by name.
 
-In Copilot CLI, custom agents are discoverable via the agent picker inside a session. Clients that integrate with Copilot CLI using the **Agent Coordination Protocol (ACP)** can also list available custom agents and switch between them programmatically via the `agent` session configuration option (v1.0.40+). This allows tools like Zed, Neovim plugins, and CI pipelines driving Copilot via ACP to surface the agent picker and switch agents without requiring a slash command. ACP clients also receive the agent's **live plan** as it works through multi-step tasks (v1.0.40+), so they can display real-time progress to their users without waiting for each turn to complete.
+In Copilot CLI, custom agents are discoverable via the agent picker inside a session. In v1.0.68+, the agents screen also lets you **browse, resume, and switch between sessions** — so you can manage your active and recent sessions without leaving the agent picker flow. Clients that integrate with Copilot CLI using the **Agent Coordination Protocol (ACP)** can also list available custom agents and switch between them programmatically via the `agent` session configuration option (v1.0.40+). This allows tools like Zed, Neovim plugins, and CI pipelines driving Copilot via ACP to surface the agent picker and switch agents without requiring a slash command. ACP clients also receive the agent's **live plan** as it works through multi-step tasks (v1.0.40+), so they can display real-time progress to their users without waiting for each turn to complete.
 
 **Q: Can agents use skills?**
 
