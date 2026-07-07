@@ -3,7 +3,7 @@ title: 'Installing and Using Plugins'
 description: 'Learn how to find, install, and manage plugins that extend GitHub Copilot CLI with reusable agents, skills, hooks, and integrations.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-06-24
+lastUpdated: 2026-07-07
 estimatedReadingTime: '8 minutes'
 tags:
   - plugins
@@ -184,7 +184,23 @@ Browse to the plugin via `@agentPlugins` in the Extensions search view or via **
 
 ## Managing Plugins
 
-Once installed, plugins are managed with a few simple commands:
+### Managing Plugins with the /plugins Dashboard (v1.0.69+)
+
+The `/plugins` dashboard provides an interactive interface for managing all your installed plugins from within a session:
+
+```
+/plugins
+```
+
+From the dashboard you can:
+- Browse all installed plugins and their included agents, skills, and hooks
+- Enable or disable individual plugins without uninstalling them
+- View plugin version and marketplace source information
+- Install new plugins from a registered marketplace
+
+This is the recommended way to manage plugins during an active session, since it shows the live state of what's loaded.
+
+### Managing Plugins via CLI Commands
 
 ```bash
 # List all installed plugins
@@ -224,7 +240,7 @@ When you install a plugin, its components become available to Copilot CLI automa
 - **Hooks** run at the configured lifecycle events during agent sessions
 - **MCP servers** extend the tools available to agents
 
-You don't need to do any additional configuration after installing — the plugin's components integrate seamlessly into your workflow. Plugins take effect immediately after installation without requiring a Copilot CLI restart.
+You don't need to do any additional configuration after installing — the plugin's components integrate seamlessly into your workflow. Plugins take effect immediately after installation without requiring a Copilot CLI restart. In v1.0.69+, installed **plugin extensions** can also be reloaded within an active session — changes to extensions are picked up without restarting.
 
 ## Plugins from This Repository
 

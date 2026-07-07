@@ -3,7 +3,7 @@ title: 'Understanding MCP Servers'
 description: 'Learn how Model Context Protocol servers extend GitHub Copilot with access to external tools, databases, and APIs.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-07-01
+lastUpdated: 2026-07-07
 estimatedReadingTime: '8 minutes'
 tags:
   - mcp
@@ -288,9 +288,14 @@ For example, a PostgreSQL server that can't connect because `DATABASE_URL` is no
   stderr: Error: DATABASE_URL environment variable is required
 ```
 
-**Diagnosing connection problems with `/mcp show`**: Run `/mcp show` to see the current status of all configured MCP servers — which ones are running, which have failed, and their connection details. When an MCP server name contains whitespace, the failure warning also suggests a directly runnable `/mcp show <name>` command for quick inspection.
+**Checking server status with `/mcp list` and `/mcp show`**: Two commands help you inspect MCP server status:
+
+- **`/mcp list`** (v1.0.69+): Lists all attached MCP servers and their current status. This command can run even while the agent is working, making it useful for real-time monitoring. You can also open the full MCP manager from `/mcp list` to enable or disable servers mid-turn (add, edit, delete, and re-auth actions are queued until the current turn finishes).
+
+- **`/mcp show`**: Displays details for all configured servers or a specific one. Use this for deeper inspection of connection details and configuration:
 
 ```
+/mcp list              # list attached servers and status (works mid-turn)
 /mcp show              # list all servers and their status
 /mcp show postgres     # inspect a specific server
 ```
